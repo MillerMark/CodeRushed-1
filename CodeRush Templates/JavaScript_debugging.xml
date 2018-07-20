@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="debugging">
+  <TemplateCategory Name="system">
+    <Template Name="#NameValue#">
+      <Comment>Name (in quotes) + value. First quote is missing to allow calling templates opportunity to insert text before name.</Comment>
+      <Expansion Priority="0">
+        <Body>«FieldStart»«TextLink(propName)»«FieldEnd»: ' + «Caret»«FieldStart»«TextLink(propName)»«FieldEnd»«BlockAnchor»«FinalTarget»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+  </TemplateCategory>
+  <Template Name="cl,">
+    <Expansion Priority="0">
+      <Body>console.log(«Caret»«Marker»«Field»);</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="cl">
+    <Expansion Priority="0">
+      <Body>console.log('«Caret»«Marker»«Field»');</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="cloo">
+    <Expansion Priority="0">
+      <Body>console.log('«:#NameValue#»);«FinalTarget»</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="oo">
+    <Expansion Priority="0">
+      <Body>'«:#NameValue#»</Body>
+      <Context />
+      <ContextString>[LeftTextMatchesRegEx("\\s*console.log\\(\\s*$")]</ContextString>
+    </Expansion>
+    <Expansion Priority="0">
+      <Body>', «:#NameValue#»</Body>
+      <Context />
+      <ContextString>[LeftTextMatchesRegEx("\\s*console.log\\(.*\\+\\s*$")]</ContextString>
+    </Expansion>
+    <Expansion Priority="0">
+      <Body>+ ', «:#NameValue#»</Body>
+      <Context />
+      <ContextString>[LeftTextMatchesRegEx("\\s*console.log\\(.*\[a-zA-Z0-9_.-\]+\\s*")]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="dbg">
+    <Expansion Priority="0">
+      <Body>debugger;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

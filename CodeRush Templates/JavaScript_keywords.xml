@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="keywords">
+  <Template Name="lb">
+    <Expansion Priority="0">
+      <Body>else {
+	«Caret»
+}</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="b">
+    <Expansion Priority="0">
+      <Body>{
+	«Caret»«Marker»
+}</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="l">
+    <Expansion Priority="0">
+      <Body>else </Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="if">
+    <Expansion Priority="0">
+      <Body>if («Caret»)</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

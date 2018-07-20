@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="&lt;head&gt;" OptExpanded="true">
+  <Template Name="imp">
+    <Expansion Priority="0">
+      <Body>&lt;script type="text/javascript" src="«Caret»«Field(fileName)»«BlockAnchor».js"&gt;&lt;/script&gt;</Body>
+      <Context />
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

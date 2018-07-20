@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="setting values">
+  <Template Name="s?Primitive?">
+    <Expansion Priority="0">
+      <Body>«Paste» = «?Get(Primitive)»;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+    <Expansion Priority="0">
+      <Body>«Paste» == «?Get(Primitive)»</Body>
+      <Context />
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

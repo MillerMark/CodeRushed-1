@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="declarations">
+  <TemplateCategory Name="system">
+    <Template Name="#AddEnum#9?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=9)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#8?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=8)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#7?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=7)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#6?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=6)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#5?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=5)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#4?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=4)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#3?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=3)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#2?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=2)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#">
+      <Expansion Priority="0">
+        <Body>«BeginFormat»«?Set(enumIndex,«?IncInteger(«?Get(prefix)»«?Get(Num)»)»)»,
+'«Caret»«Field(nextElement,Press Enter to add another element or Escape to jump to the marker)»«BlockAnchor»': «?Get(enumIndex)»«Target(#AddEnum#«?Get(enumIndex)»)»«EndFormat»«Format»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#1?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#(prefix=1)»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+    <Template Name="#AddEnum#?Num?">
+      <Expansion Priority="0">
+        <Body>«:#AddEnum#»</Body>
+        <Context />
+      </Expansion>
+    </Template>
+  </TemplateCategory>
+  <Template Name="cf">
+    <Comment>Class function</Comment>
+    <Expansion Priority="0">
+      <Body>«Caret»«Field(name)»«BlockAnchor»(«Field») {
+	«Marker»«FinalTarget»
+}</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="e">
+    <Comment>Enum</Comment>
+    <Expansion Priority="0">
+      <Body>«?Set(enumIndex,1)»var «Caret»«FieldStart»«Link(myEnum)»«FieldEnd»«BlockAnchor» = {
+	'«Field(firstElement,Enter element name and press Enter to add another element or Escape to jump to the marker)»': «Field(«?Get(enumIndex)»)»«Target(#AddEnum#«?Get(enumIndex)»)»
+}«Marker»
+Object.freeze(«Link(myEnum)»);</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="v.">
+    <Expansion Priority="0">
+      <Body>var «Caret»«Field»;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="n.">
+    <Expansion Priority="0">
+      <Body>var «Caret»«Field(varName)»«BlockAnchor» = «Field('')»;</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="n?Primitive?">
+    <Expansion Priority="0" SuppressLastChar="true">
+      <Body>var «Caret»«Field(varName)»«BlockAnchor» = «Field(«?Get(Primitive)»)»;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="f">
+    <Expansion Priority="0">
+      <Body>«Caret»«Field(name)»«BlockAnchor»(«Field») {
+	«Marker»«FinalTarget»
+}</Body>
+      <Context />
+      <ContextString>[InClass]</ContextString>
+    </Expansion>
+    <Expansion Priority="0">
+      <Body>function «Caret»«Field(name)»«BlockAnchor»(«Field») {
+	«Marker»«FinalTarget»
+}</Body>
+      <Context />
+    </Expansion>
+  </Template>
+  <Template Name="gs">
+    <Expansion Priority="0">
+      <Body>get «Caret»«FieldStart»«Link(name)»«FieldEnd»«BlockAnchor»() {
+	return this._«Link(name)»;
+}
+set «Link(name)»(value) {«FinalTarget»
+	this._«Link(name)» = value;
+}</Body>
+      <Context />
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

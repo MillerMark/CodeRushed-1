@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="loops">
+  <Template Name="co">
+    <Expansion Priority="0">
+      <Body>continue;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="br">
+    <Expansion Priority="0">
+      <Body>break;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="fr?IteratorVar?">
+    <Expansion Priority="0">
+      <Body>for (var «Caret»«FieldStart»«Link(«?Get(IteratorVar)»)»«FieldEnd»«BlockAnchor» = 0; «Link(«?Get(IteratorVar)»)» &lt; «Field(length)»; «Link(«?Get(IteratorVar)»)»++) {
+	
+}</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="fe">
+    <Expansion Priority="0">
+      <Body>«Paste».forEach(function («Caret»«Field(item)»«BlockAnchor») { «FinalTarget» });</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

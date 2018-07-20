@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="method calls">
+  <Template Name="jp">
+    <Expansion Priority="0">
+      <Body>var «Caret»«Field(result)»«BlockAnchor» = JSON.parse(«Marker»«Field»);</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+    <Expansion Priority="0">
+      <Body>JSON.parse(«Caret»«Marker»«Field»)</Body>
+      <Context />
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>

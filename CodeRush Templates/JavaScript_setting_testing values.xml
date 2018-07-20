@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XmlTemplateCategoryInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="setting/testing values">
+  <Template Name="inx">
+    <Expansion Priority="0">
+      <Body>if («Paste» == null)
+	return;</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="inr">
+    <Expansion Priority="0">
+      <Body>«:inx»</Body>
+      <Context />
+      <ContextString>[OnEmptyLine]</ContextString>
+    </Expansion>
+  </Template>
+  <Template Name="nn">
+    <Expansion Priority="0">
+      <Body>«Paste» != null</Body>
+      <Context />
+      <ContextString>[LeftTextMatchesRegEx("\s*if\s*.*")]</ContextString>
+    </Expansion>
+  </Template>
+</XmlTemplateCategoryInfo>
