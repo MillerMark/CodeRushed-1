@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  
+  <script type="text/javascript" src="Physics.js"></script>
 </head>
 
 <body>
-  <canvas id="myCanvas" width="1250" height="650" style="border:1px solid #C0C0C0;"></canvas>
+  <canvas id="myCanvas" width="850" height="650" style="border:1px solid #C0C0C0;"></canvas>
 
   <script>
+    function updateScreen() {
+      var now = new Date();
+      var displacementInSeconds = (now - startTime) / 1000;
+      var displacement = Physics.getDisplacement(initialVelocity, displacementInSeconds, 9.80665);
+      rectTop += displacement;
+      ctx.clearRect(0, 0, 850, 650);
+      ctx.fillRect(350, rectTop, 150, 100);
+    }
+
+    var initialVelocity = -5;
+    var myCanvas = document.getElementById("myCanvas");
+    var ctx = myCanvas.getContext("2d");
+    var rectTop = 100;
+    var startTime = new Date();
+    //console.log('displacement = ' + displacement);
+    setInterval(updateScreen, 10);
   </script>
 </body>
 </html>
