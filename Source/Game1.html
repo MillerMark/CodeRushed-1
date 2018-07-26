@@ -2,28 +2,54 @@
 <html>
 <head>
   <script type="text/javascript" src="Physics.js"></script>
+  <script type="text/javascript" src="Actor.js"></script>
 </head>
 
 <body>
-  <canvas id="myCanvas" width="850" height="650" style="border:1px solid #C0C0C0;"></canvas>
+  <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"></canvas>
 
   <script>
-    function updateScreen() {
-      var now = new Date();
-      var displacementInSeconds = (now - startTime) / 1000;
-      var displacement = Physics.getDisplacement(initialVelocity, displacementInSeconds, 9.80665);
-      rectTop += displacement;
-      ctx.clearRect(0, 0, 850, 650);
-      ctx.fillRect(350, rectTop, 150, 100);
+    var actors = [];
+    var secondRect = null;
+
+    function getRandomNumber(maxValue) {
+      return Math.random() * maxValue;
     }
 
-    var initialVelocity = -5;
+    function getBlockPosition() {
+      return getRandomNumber(myCanvas.clientWidth - rectWidth);
+    }
+
+    function updateScreen() {
+      ctx.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
+
+
+      actors.forEach(function (actor) {
+        actor.bounce(myCanvas.clientHeight);
+      });
+
+
+
+      actors.forEach(function (actor) {
+              actor.draw(ctx);
+              });
+
+      var lastActor = actors[actors.length - 1];
+
+      if (lastActor) {
+        var now = new Date();
+        var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
+        if (rectAge > 1) {
+          actors.push(new Actor(getBlockPosition()));
+        }
+      }
+    }
+
     var myCanvas = document.getElementById("myCanvas");
     var ctx = myCanvas.getContext("2d");
-    var rectTop = 100;
-    var startTime = new Date();
     //console.log('displacement = ' + displacement);
     setInterval(updateScreen, 10);
+    actors.push(new Actor(getBlockPosition()));
   </script>
 </body>
 </html>

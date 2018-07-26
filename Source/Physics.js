@@ -7,4 +7,8 @@ class Physics {
   static getDisplacement(initialVelocity, time, acceleration) {
     return initialVelocity * time + acceleration * time * time / 2;
   }
+
+  static getFinalVelocity(initialVelocity, time, acceleration) {
+    return initialVelocity + acceleration * time;
+  }
 }
