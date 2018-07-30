@@ -1,3 +1,4 @@
+var pixelsPerMeter = 200;
 class Physics {
 	constructor() {
 		
@@ -8,6 +9,9 @@ class Physics {
     return initialVelocity * time + acceleration * time * time / 2;
   }
 
+  static convertToPixels(meters) {
+    return meters * pixelsPerMeter;
+  }
 
   static getFinalVelocity(initialVelocity, time, acceleration) {
     return initialVelocity + acceleration * time;
