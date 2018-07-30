@@ -53,7 +53,7 @@ class Actor {
     var timeSpan = (now - this.startTime) / 1000;  // in seconds.
     var currentVelocity =
       Physics.getFinalVelocity(this.currentVelocity, timeSpan, gravity)
-      * 0.7;  // Hack! Fix this!
+      * 0.9;  // Hack! Fix this!
 
     if (currentVelocity < 0 && Math.abs(currentVelocity) < 0.0005) {
       this.stop();

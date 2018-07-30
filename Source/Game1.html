@@ -38,7 +38,7 @@
       if (lastActor) {
         var now = new Date();
         var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
-        if (rectAge > 0.5) {
+        if (rectAge > 0.25) {
           actors.push(new Actor(getBlockPosition()));
         }
       }
