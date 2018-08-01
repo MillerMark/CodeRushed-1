@@ -5,50 +5,51 @@
   <script type="text/javascript" src="Actor.js"></script>
 </head>
 
-<body>
-  <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"></canvas>
+  <body>
+    <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"></canvas>
 
-  <script>
-    var actors = [];
-    var secondRect = null;
+    <script>
+      var actors = [];
+      var secondRect = null;
 
-    function getRandomNumber(maxValue) {
-      return Math.random() * maxValue;
-    }
+      function getRandomNumber(maxValue) {
+        return Math.random() * maxValue;
+      }
 
-    function getBlockPosition() {
-      return getRandomNumber(myCanvas.clientWidth - rectWidth);
-    }
+      function getBlockPosition() {
+        return getRandomNumber(myCanvas.clientWidth - rectWidth);
+      }
 
-    function updateScreen() {
-      ctx.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
-
-
-      actors.forEach(function (actor) {
-        actor.bounce(myCanvas.clientHeight);
-      });
+      function updateScreen() {
+        ctx.clearRect(0, 0, myCanvas.clientWidth, myCanvas.clientHeight);
 
 
-      actors.forEach(function (actor) {
-        actor.draw(ctx);
-      });
+        actors.forEach(function (actor) {
+          actor.bounce(myCanvas.clientHeight);
+        });
 
-      var lastActor = actors[actors.length - 1];
 
-      if (lastActor) {
-        var now = new Date();
-        var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
-        if (rectAge > 0.25) {
-          actors.push(new Actor(getBlockPosition()));
+        actors.forEach(function (actor) {
+          actor.draw(ctx);
+        });
+
+        var lastActor = actors[actors.length - 1];
+
+        if (lastActor) {
+          var now = new Date();
+          var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
+          if (rectAge > 0.25) {
+            actors.push(new Actor(getBlockPosition()));
+          }
         }
       }
-    }
 
-    var myCanvas = document.getElementById("myCanvas");
-    var ctx = myCanvas.getContext("2d");
-    //console.log('displacement = ' + displacement);
-    setInterval(updateScreen, 10);
-    actors.push(new Actor(getBlockPosition()));
-  </script>
-</body>
-</html>
+      var myCanvas = document.getElementById("myCanvas");
+      var ctx = myCanvas.getContext("2d");
+
+      //console.log('displacement = ' + displacement);
+      setInterval(updateScreen, 10);
+      actors.push(new Actor(getBlockPosition()));
+    </script>
+  </body>
+  </html>

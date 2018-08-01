@@ -25,10 +25,13 @@ class Actor {
       var now = new Date();
       var msStopped = now - this.stopTime;
       if (msStopped > 1000) {
+
+        // Hack - this low-level object shouldn't have to know about it's higher level container. Need to fix it.
         var index = actors.indexOf(this);
         if (index !== -1)
           actors.splice(index, 1);
         return;
+
       }
       this.opacity = (1000 - msStopped) / 1000;
     }
@@ -51,19 +54,16 @@ class Actor {
       return;
     var now = new Date();
     var timeSpan = (now - this.startTime) / 1000;  // in seconds.
-    var currentVelocity =
-      Physics.getFinalVelocity(this.currentVelocity, timeSpan, gravity)
-      * 0.9;  // Hack! Fix this!
+    var currentVelocity = Physics.getFinalVelocity(this.currentVelocity, timeSpan, gravity) * 0.9;  // Hack! Fix this!
 
     if (currentVelocity < 0 && Math.abs(currentVelocity) < 0.0005) {
       this.stop();
       return;
     }
 
-    if (this.rectTop + this.displacement + rectHeight >
-        groundDistance && currentVelocity > 0) {
+    if (this.rectTop + this.displacement + rectHeight > groundDistance && currentVelocity > 0) {
       this.currentVelocity = -currentVelocity;
-      this.startTime = new Date();
+      this.startTime = now;
       this.rectTop += this.displacement;
       this.calculateNewPosition();
     }

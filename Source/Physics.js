@@ -1,8 +1,10 @@
 var pixelsPerMeter = 200;
+
 class Physics {
 	constructor() {
 		
   }
+
   // All time units will be in seconds...
   // All distance units will be in meters...
   static getDisplacement(initialVelocity, time, acceleration) {
