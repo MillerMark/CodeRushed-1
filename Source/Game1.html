@@ -17,7 +17,7 @@
       }
 
       function getBlockPosition() {
-        return getRandomNumber(myCanvas.clientWidth - rectWidth);
+        return getRandomNumber(myCanvas.clientWidth / 3 - rectWidth);
       }
 
       function updateScreen() {
@@ -25,7 +25,7 @@
 
 
         actors.forEach(function (actor) {
-          actor.bounce(myCanvas.clientHeight);
+          actor.bounce(0, myCanvas.clientWidth, myCanvas.clientHeight);
         });
 
 
@@ -33,23 +33,34 @@
           actor.draw(ctx);
         });
 
-        var lastActor = actors[actors.length - 1];
+        if (needToCreateNewActor()) 
+          //actors.push(new Actor(getBlockPosition(), startDropY, "Gear.svg"));
+          actors.push(new Actor(getBlockPosition(), startDropY, "RobotFullBody.svg"));
+      }
 
-        if (lastActor) {
+      function needToCreateNewActor() {
+        var lastActor = null;
+
+        if (actors.length > 0) {
+          lastActor = actors[actors.length - 1];
           var now = new Date();
           var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
           if (rectAge > 0.25) {
-            actors.push(new Actor(getBlockPosition()));
+            return true;
           }
         }
+        else 
+          return true;
+
+        return false;
       }
 
       var myCanvas = document.getElementById("myCanvas");
+      var startDropY = myCanvas.clientHeight - Physics.metersToPixels(20) - rectHeight;
       var ctx = myCanvas.getContext("2d");
 
       //console.log('displacement = ' + displacement);
       setInterval(updateScreen, 10);
-      actors.push(new Actor(getBlockPosition()));
     </script>
   </body>
   </html>

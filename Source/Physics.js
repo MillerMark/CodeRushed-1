@@ -1,4 +1,4 @@
-var pixelsPerMeter = 200;
+var pixelsPerMeter = 20;
 
 class Physics {
 	constructor() {
@@ -11,7 +11,7 @@ class Physics {
     return initialVelocity * time + acceleration * time * time / 2;
   }
 
-  static convertToPixels(meters) {
+  static metersToPixels(meters) {
     return meters * pixelsPerMeter;
   }
 
