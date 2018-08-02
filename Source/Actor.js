@@ -1,6 +1,5 @@
 class Actor {
   constructor(x, y, svgFile) {
-    // TODO: Work with svgFile...
     this.img = new Image();
     this.img.src = svgFile;
     this.y = y;
@@ -46,7 +45,7 @@ class Actor {
     ctx.globalAlpha = this.opacity;
     //ctx.fillRect(this.x + this.displacementX, this.y + this.displacementY, rectWidth, rectHeight);
 
-    var scale = 0.1; // 1/10th
+    var scale = 0.15;
 
     var secondsAlive = (now - this.startTime) / 1000;
     var degrees = secondsAlive * 90;
@@ -57,16 +56,11 @@ class Actor {
     var midY = y + scale * this.img.height / 2;
 
     ctx.save();
-
-    // move to the center of the canvas
     //this.drawCrossHair(x, y, "#f00");
 
     ctx.translate(midX, midY);
     ctx.rotate(degrees * Math.PI / 180);
     ctx.translate(-midX, -midY);
-
-    // draw the image
-    // since the context is rotated, the image will be rotated also
     ctx.drawImage(this.img, x, y, this.img.width * scale, this.img.height * scale);
     //this.drawCrossHair(midX, midY, "#00f");
 

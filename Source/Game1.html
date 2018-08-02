@@ -45,7 +45,7 @@
           lastActor = actors[actors.length - 1];
           var now = new Date();
           var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
-          if (rectAge > 0.25) {
+          if (rectAge > 0.5) {
             return true;
           }
         }
