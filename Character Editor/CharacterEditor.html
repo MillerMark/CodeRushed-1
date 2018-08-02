@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="../Source/Actor.js"></script>
+  <script type="text/javascript" src="../Source/Physics.js"></script>
+  <script type="text/javascript" src="../Source/Character.js"></script>
+</head>
+
+<body>
+  <style type="text/css">
+    .tg {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+      .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+      }
+
+      .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+      }
+
+      .tg .tg-upqx {
+        background-color: #ffffff;
+        border-color: #cbcefb
+      }
+
+      .tg .tg-97fk {
+        background-color: #ffffff;
+        border-color: #cbcefb;
+        vertical-align: top
+      }
+  </style>
+  <table class="tg">
+    <tr>
+      <th class="tg-upqx"></th>
+      <th class="tg-upqx" colspan="3"></th>
+      <th class="tg-97fk"></th>
+    </tr>
+    <tr>
+      <td class="tg-97fk">
+        Folder: <input type="text" value="Clyde" id="folderName"><br><br>
+        Base File Name: <input value="WalkFrame" type="text" id="baseFileName"><br><br>
+        Count: <input type="text" value="25" id="frameCount"><br><br>
+        <button type="button" onclick="Load()">Load!</button>
+      </td>
+      <td class="tg-97fk" colspan="3">
+        <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"></canvas>
+      </td>
+      <td class="tg-97fk"></td>
+    </tr>
+    <tr>
+      <td class="tg-upqx"></td>
+      <td class="tg-upqx"><button type="button" onclick="advanceFrameBackward()">&lt;&lt;</button></td>
+      <td class="tg-97fk"><input type="text" value="0" id="frameNumber" onchange="frameNumberTextChanged"></td>
+      <td class="tg-97fk"><button type="button" onclick="advanceFrameForward()">&gt;&gt;</button></td>
+      <td class="tg-97fk"></td>
+    </tr>
+  </table>
+
+  <script>
+    var frameIndex = 0;
+    var folderName;
+    var baseFileName;
+    var frameCount;
+    var backgroundFrameImage;
+
+    function Load() {
+      folderName = document.getElementById("folderName").value;
+      baseFileName = document.getElementById("baseFileName").value;
+      frameCount = document.getElementById("frameCount").value;
+
+      backgroundFrameImage = new Image();
+      backgroundFrameImage.onload = function () {
+        myCanvas.width = backgroundFrameImage.width;
+        myCanvas.height = backgroundFrameImage.height;
+        refresh();
+      };
+      loadImage();
+    }
+
+    function loadImage() {
+      if (backgroundFrameImage)
+        backgroundFrameImage.src = folderName + '/' + baseFileName + frameIndex + '.png';
+    }
+
+    function refresh() {
+      ctx.drawImage(backgroundFrameImage, 0, 0);
+      character.draw(ctx);
+    }
+
+    function frameNumberTextChanged() {
+      setFrameIndex(frameIndexTextBox.value);
+    }
+
+    function setFrameIndex(newIndex) {
+      if (frameIndex == newIndex) {
+        return;
+      }
+      frameIndex = newIndex;
+      frameIndexChanged();
+    }
+
+    function frameIndexChanged() {
+      loadImage();
+      updateFrameNumber();
+      refresh();
+    }
+
+    function advanceFrameForward() {
+      frameIndex++;
+      if (frameIndex >= frameCount)
+        frameIndex = 0;
+      frameIndexChanged();
+    }
+
+    function advanceFrameBackward() {
+      frameIndex--;
+      if (frameIndex < 0)
+        frameIndex = frameCount - 1;
+      frameIndexChanged();
+    }
+
+    function updateFrameNumber() {
+      frameIndexTextBox.value = frameIndex;
+    }
+
+    var frameIndexTextBox = document.getElementById("frameNumber");
+    var myCanvas = document.getElementById("myCanvas");
+    var ctx = myCanvas.getContext("2d");
+    var character = new Character("ClydeTorsoBack.svg");
+    gravity = 0;
+  </script>
+</body>
+</html>

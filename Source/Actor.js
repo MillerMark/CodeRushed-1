@@ -1,14 +1,17 @@
+const svgPath = "../SVGs/";
+
 class Actor {
-  constructor(x, y, svgFile) {
+  constructor(x, y, svgFile, killActorFunction) {
+    this.killActorFunction = killActorFunction;
     this.img = new Image();
-    this.img.src = svgFile;
+    this.img.src = svgPath + svgFile;
     this.y = y;
     this.displacementX = 0;
     this.displacementY = 0;
     this.x = x;
     this.opacity = 1;
-    this.currentVelocityX = 2;
-    this.currentVelocityY = -2;
+    this.currentVelocityX = 0;
+    this.currentVelocityY = 0;
     this.startTime = new Date();
     this.moveTime = new Date();
     this.stopped = false;
@@ -31,10 +34,8 @@ class Actor {
       
       var msStopped = now - this.stopTime;
       if (msStopped > 1000) {
-        // Hack - this low-level object shouldn't have to know about it's higher level container. Need to fix it.
-        var index = actors.indexOf(this);
-        if (index !== -1)
-          actors.splice(index, 1);
+        if (this.killActorFunction)
+          this.killActorFunction(this);
         return;
 
       }
@@ -45,7 +46,7 @@ class Actor {
     ctx.globalAlpha = this.opacity;
     //ctx.fillRect(this.x + this.displacementX, this.y + this.displacementY, rectWidth, rectHeight);
 
-    var scale = 0.15;
+    var scale = 0.3;
 
     var secondsAlive = (now - this.startTime) / 1000;
     var degrees = secondsAlive * 90;
@@ -134,4 +135,4 @@ class Actor {
 
 const rectWidth = 25;
 const rectHeight = 25;
-const gravity = 9.80665;
+var gravity = 9.80665;

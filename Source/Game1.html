@@ -35,7 +35,13 @@
 
         if (needToCreateNewActor()) 
           //actors.push(new Actor(getBlockPosition(), startDropY, "Gear.svg"));
-          actors.push(new Actor(getBlockPosition(), startDropY, "RobotFullBody.svg"));
+          actors.push(new Actor(getBlockPosition(), startDropY, "TwitchGear.svg", killActor));
+      }
+
+      function killActor(actor) {
+        var index = actors.indexOf(actor);
+        if (index !== -1)
+          actors.splice(index, 1);
       }
 
       function needToCreateNewActor() {
@@ -45,7 +51,7 @@
           lastActor = actors[actors.length - 1];
           var now = new Date();
           var rectAge = (now - lastActor.startTime) / 1000;  // in seconds.
-          if (rectAge > 0.5) {
+          if (rectAge > 0.1) {
             return true;
           }
         }
@@ -56,8 +62,9 @@
       }
 
       var myCanvas = document.getElementById("myCanvas");
-      var startDropY = myCanvas.clientHeight - Physics.metersToPixels(20) - rectHeight;
       var ctx = myCanvas.getContext("2d");
+
+      var startDropY = myCanvas.clientHeight - Physics.metersToPixels(2) - rectHeight;
 
       //console.log('displacement = ' + displacement);
       setInterval(updateScreen, 10);
