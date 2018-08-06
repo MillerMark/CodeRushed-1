@@ -1,6 +1,7 @@
 class Character {
-	constructor(torsoFileName) {
+	constructor(name, torsoFileName) {
     this.torso = new Actor(0, 0, torsoFileName);
+    this.name = name;
   }
 
   draw(ctx) {
