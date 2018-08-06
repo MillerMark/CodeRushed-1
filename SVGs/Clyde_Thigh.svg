@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="63px" height="174px" viewBox="0 0 63 174">
+  <defs>
+    <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4F395F;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#AB9DB5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4F395F;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4E385E;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#4E385E;stop-opacity:0.2" />
+    </linearGradient>
+    <radialGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#CCC4D2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#695678;stop-opacity:1" />
+    </radialGradient>
+    <clipPath id="clipPath0">
+      <path d="M4,5.3125C4,2.5625,18.375,1,20.6875,1L37.5625,1C39.875,1,54,1.875,54,4.5625C54,45.3125,50,72.125,41.8125,128.125C41.8125,130.8125,39.875,133,37.5625,133L20.6875,133C18.375,133,16.5,130.8125,16.5,128.125C5.3125,57.6875,8.1875,46.25,4,5.3125z" />
+    </clipPath>
+    <clipPath id="clipPath1">
+      <path d="M0,140C0,124,13,111,29,111C45.0625,111,58,124,58,140C58,156.0625,45.0625,169,29,169C13,169,0,156.0625,0,140" />
+    </clipPath>
+  </defs>
+  <rect width="51" height="133" x="4" y="1" style="fill:url(#gradient0);stroke:none;stroke-width:1" clip-path="url(#clipPath0)" />
+  <path stroke="#4E385E" stroke-width="1" fill="none" d="M4,5.3125C4,2.5625,18.375,1,20.6875,1L37.5625,1C39.875,1,54,1.875,54,4.5625C54,45.3125,50,72.125,41.8125,128.125C41.8125,130.8125,39.875,133,37.5625,133L20.6875,133C18.375,133,16.5,130.8125,16.5,128.125C5.3125,57.6875,8.1875,46.25,4,5.3125z" />
+  <path stroke="none" stroke-width="1" fill="url(#gradient1)" d="M4.5,3.25L53.5,-0.5C53.4375,4.75,53.3125,10,53.1875,15.25C50.625,23.8125,37,27.125,28.9375,27.5C20.9375,27.875,7.5625,24.25,5.125,17.5C5.125,10.3125,4.5,10.4375,4.5,3.25z" />
+  <rect width="59" height="59" y="111" style="fill:url(#gradient2);stroke:none;stroke-width:1" clip-path="url(#clipPath1)" />
+  <path stroke="#5F4573" stroke-width="1" fill="none" d="M0,140C0,124,13,111,29,111C45.0625,111,58,124,58,140C58,156.0625,45.0625,169,29,169C13,169,0,156.0625,0,140" />
+</svg>
