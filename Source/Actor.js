@@ -1,14 +1,19 @@
+const svgPath = "../SVGs/";
+
 class Actor {
-  constructor(x, y, svgFile) {
+  constructor(x, y, svgFile, killActorFunction) {
+    this.killActorFunction = killActorFunction;
     this.img = new Image();
-    this.img.src = svgFile;
+    this.img.src = svgPath + svgFile;
+    this.centerX = 0;
+    this.centerY = 0;
     this.y = y;
     this.displacementX = 0;
     this.displacementY = 0;
     this.x = x;
     this.opacity = 1;
-    this.currentVelocityX = 2;
-    this.currentVelocityY = -2;
+    this.currentVelocityX = 0;
+    this.currentVelocityY = 0;
     this.startTime = new Date();
     this.moveTime = new Date();
     this.stopped = false;
@@ -26,15 +31,17 @@ class Actor {
   draw(ctx) {
     var now = new Date();
 
+    this.centerX = this.img.width / 2;
+    this.centerY = this.img.height / 2;
+
+
     if (this.stopped) {
       ctx.globalAlpha = 0.5;
       
       var msStopped = now - this.stopTime;
       if (msStopped > 1000) {
-        // Hack - this low-level object shouldn't have to know about it's higher level container. Need to fix it.
-        var index = actors.indexOf(this);
-        if (index !== -1)
-          actors.splice(index, 1);
+        if (this.killActorFunction)
+          this.killActorFunction(this);
         return;
 
       }
@@ -45,26 +52,28 @@ class Actor {
     ctx.globalAlpha = this.opacity;
     //ctx.fillRect(this.x + this.displacementX, this.y + this.displacementY, rectWidth, rectHeight);
 
-    var scale = 0.15;
+    var scale = 0.3;
 
     var secondsAlive = (now - this.startTime) / 1000;
     var degrees = secondsAlive * 90;
     var x = this.x + this.displacementX;
     var y = this.y + this.displacementY;
 
-    var midX = x + scale * this.img.width / 2;
-    var midY = y + scale * this.img.height / 2;
+    var midX = x + scale * this.img.width / 2 - scale * this.centerX;
+    var midY = y + scale * this.img.height / 2 - scale * this.centerY;
 
     ctx.save();
-    //this.drawCrossHair(x, y, "#f00");
+    
 
     ctx.translate(midX, midY);
     ctx.rotate(degrees * Math.PI / 180);
     ctx.translate(-midX, -midY);
-    ctx.drawImage(this.img, x, y, this.img.width * scale, this.img.height * scale);
+    ctx.drawImage(this.img, x - scale * this.centerX, y - scale * this.centerY, this.img.width * scale, this.img.height * scale);
     //this.drawCrossHair(midX, midY, "#00f");
 
     ctx.restore();
+
+    this.drawCrossHair(200, 200, "#f00");
   }
 
   drawCrossHair(x, y, color) {
@@ -134,4 +143,4 @@ class Actor {
 
 const rectWidth = 25;
 const rectHeight = 25;
-const gravity = 9.80665;
+var gravity = 9.80665;
