@@ -1,11 +1,39 @@
+.svgButtonImage {
+    width: auto;
+    height: auto;
+}
+
 .svgButton {
-	width: 128px;
-	height: 128px;
+    width: 128px;
+    height: 128px;
+    fill: transparent;
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    outline: none;
+}
+
+.svgButton:hover {
+    fill: #fcf5c4;
+}
+
+.svgNavButtonImage {
+    width: auto;
+    height: auto;
 }
 
 .svgNavButton {
-	width: 96px;
-	height: 96px;
+    width: 96px;
+    height: 96px;
+    fill: transparent;
+    background-color:transparent;
+    color:transparent;
+    border:none;
+    outline:none;
+}
+
+.svgNavButton:hover {
+    fill: #fcf5c4;
 }
 
 .svgButtonBack {
