@@ -5,6 +5,8 @@ class Actor {
     this.killActorFunction = killActorFunction;
     this.img = new Image();
     this.img.src = svgPath + svgFile;
+    this.centerX = 0;
+    this.centerY = 0;
     this.y = y;
     this.displacementX = 0;
     this.displacementY = 0;
@@ -28,6 +30,10 @@ class Actor {
 
   draw(ctx) {
     var now = new Date();
+
+    this.centerX = this.img.width / 2;
+    this.centerY = this.img.height / 2;
+
 
     if (this.stopped) {
       ctx.globalAlpha = 0.5;
@@ -53,19 +59,21 @@ class Actor {
     var x = this.x + this.displacementX;
     var y = this.y + this.displacementY;
 
-    var midX = x + scale * this.img.width / 2;
-    var midY = y + scale * this.img.height / 2;
+    var midX = x + scale * this.img.width / 2 - scale * this.centerX;
+    var midY = y + scale * this.img.height / 2 - scale * this.centerY;
 
     ctx.save();
-    //this.drawCrossHair(x, y, "#f00");
+    
 
     ctx.translate(midX, midY);
     ctx.rotate(degrees * Math.PI / 180);
     ctx.translate(-midX, -midY);
-    ctx.drawImage(this.img, x, y, this.img.width * scale, this.img.height * scale);
+    ctx.drawImage(this.img, x - scale * this.centerX, y - scale * this.centerY, this.img.width * scale, this.img.height * scale);
     //this.drawCrossHair(midX, midY, "#00f");
 
     ctx.restore();
+
+    this.drawCrossHair(200, 200, "#f00");
   }
 
   drawCrossHair(x, y, color) {

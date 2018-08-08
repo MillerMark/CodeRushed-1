@@ -1,0 +1,27 @@
+.svgButton {
+	width: 128px;
+	height: 128px;
+}
+
+.svgNavButton {
+	width: 96px;
+	height: 96px;
+}
+
+.svgButtonBack {
+	fill: #fff;
+}
+
+	.svgButtonBack:hover {
+		fill: #fcf5c4;
+	}
+
+	.svgButtonBack path:hover {
+		border: 10px solid green;
+	}
+
+/* There is no svgButtonColors class! */
+.svgButtonColors {
+	background: #fcf5c4;
+	border: #f00;
+}
