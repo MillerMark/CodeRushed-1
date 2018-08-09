@@ -2,11 +2,11 @@ const svgPath = "../SVGs/";
 
 class Actor {
   constructor(x, y, svgFile, killActorFunction) {
-    this.killActorFunction = killActorFunction;
+    this.killActorFunc = killActorFunction;
     this.img = new Image();
     this.img.src = svgPath + svgFile;
-    this.centerX = 0;
-    this.centerY = 0;
+    this.anchorX = 0;
+    this.anchorY = 0;
     this.y = y;
     this.displacementX = 0;
     this.displacementY = 0;
@@ -18,6 +18,7 @@ class Actor {
     this.moveTime = new Date();
     this.stopped = false;
   }
+
 
   calculateNewPosition() {
     if (this.stopped)
@@ -31,17 +32,13 @@ class Actor {
   draw(ctx) {
     var now = new Date();
 
-    this.centerX = this.img.width / 2;
-    this.centerY = this.img.height / 2;
-
-
     if (this.stopped) {
       ctx.globalAlpha = 0.5;
       
       var msStopped = now - this.stopTime;
       if (msStopped > 1000) {
-        if (this.killActorFunction)
-          this.killActorFunction(this);
+        if (this.killActorFunc)
+          this.killActorFunc(this);
         return;
 
       }
@@ -59,32 +56,26 @@ class Actor {
     var x = this.x + this.displacementX;
     var y = this.y + this.displacementY;
 
-    var midX = x + scale * this.img.width / 2 - scale * this.centerX;
-    var midY = y + scale * this.img.height / 2 - scale * this.centerY;
+    //var midX = x + scale * this.img.width / 2 - scale * this.anchorX;
+    //var midY = y + scale * this.img.height / 2 - scale * this.anchorY;
+    //var midX = x - scale * this.anchorX;
+    //var midY = y - scale * this.anchorY;
+    var midX = x;
+    var midY = y;
 
     ctx.save();
     
-
     ctx.translate(midX, midY);
     ctx.rotate(degrees * Math.PI / 180);
     ctx.translate(-midX, -midY);
-    ctx.drawImage(this.img, x - scale * this.centerX, y - scale * this.centerY, this.img.width * scale, this.img.height * scale);
+    ctx.globalAlpha = 0.5;
+    ctx.drawImage(this.img, x - scale * this.anchorX, y - scale * this.anchorY, this.img.width * scale, this.img.height * scale);
+    drawCrossHair(ctx, x, y, 10, "#0f0", "x, y");
     //this.drawCrossHair(midX, midY, "#00f");
 
     ctx.restore();
-
-    this.drawCrossHair(200, 200, "#f00");
-  }
-
-  drawCrossHair(x, y, color) {
-    var crossHairHeight = 10;
-    ctx.beginPath();
-    ctx.strokeStyle = color;
-    ctx.moveTo(x, y - crossHairHeight);
-    ctx.lineTo(x, y + crossHairHeight);
-    ctx.moveTo(x - crossHairHeight, y);
-    ctx.lineTo(x + crossHairHeight, y);
-    ctx.stroke();
+    
+    //drawCrossHair(ctx, x, y, 10, "#00f");
   }
 
   stop() {
