@@ -17,6 +17,7 @@ class Actor {
     this.startTime = new Date();
     this.moveTime = new Date();
     this.stopped = false;
+    this.spinning = false;
     this.scaleWidth = 1;
     this.scaleHeight = 1;
   }
@@ -51,7 +52,11 @@ class Actor {
     ctx.globalAlpha = this.opacity;
 
     var secondsAlive = (now - this.startTime) / 1000;
-    var degrees = secondsAlive * 90;
+    var degrees = 0;
+    if (this.spinning) {
+      degrees = secondsAlive * 90;
+    }
+    
     var x = this.x + this.displacementX;
     var y = this.y + this.displacementY;
 
