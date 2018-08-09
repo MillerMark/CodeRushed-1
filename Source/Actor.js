@@ -36,7 +36,7 @@ class Actor {
 
     if (this.stopped) {
       ctx.globalAlpha = 0.5;
-      
+
       var msStopped = now - this.stopTime;
       if (msStopped > 1000) {
         if (this.killActorFunc)
@@ -46,10 +46,9 @@ class Actor {
       }
       this.opacity = (1000 - msStopped) / 1000;
     }
-      
+
     this.calculateNewPosition();
     ctx.globalAlpha = this.opacity;
-    //ctx.fillRect(this.x + this.displacementX, this.y + this.displacementY, rectWidth, rectHeight);
 
     var secondsAlive = (now - this.startTime) / 1000;
     var degrees = secondsAlive * 90;
@@ -57,18 +56,15 @@ class Actor {
     var y = this.y + this.displacementY;
 
     ctx.save();
-    
+
     ctx.translate(x, y);
     ctx.rotate(degrees * Math.PI / 180);
     ctx.translate(-x, -y);
-    ctx.globalAlpha = 0.5;
     ctx.drawImage(this.img, x - this.scaleWidth * this.anchorX, y - this.scaleHeight * this.anchorY, this.img.width * this.scaleWidth, this.img.height * this.scaleHeight);
     drawCrossHair(ctx, x, y, 10, "#00f", "anchor");
-    //this.drawCrossHair(midX, midY, "#00f");
 
     ctx.restore();
-    
-    //drawCrossHair(ctx, x, y, 10, "#00f");
+
   }
 
   stop() {
