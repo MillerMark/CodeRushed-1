@@ -17,6 +17,8 @@ class Actor {
     this.startTime = new Date();
     this.moveTime = new Date();
     this.stopped = false;
+    this.scaleWidth = 1;
+    this.scaleHeight = 1;
   }
 
 
@@ -49,28 +51,19 @@ class Actor {
     ctx.globalAlpha = this.opacity;
     //ctx.fillRect(this.x + this.displacementX, this.y + this.displacementY, rectWidth, rectHeight);
 
-    var scale = 0.3;
-
     var secondsAlive = (now - this.startTime) / 1000;
     var degrees = secondsAlive * 90;
     var x = this.x + this.displacementX;
     var y = this.y + this.displacementY;
 
-    //var midX = x + scale * this.img.width / 2 - scale * this.anchorX;
-    //var midY = y + scale * this.img.height / 2 - scale * this.anchorY;
-    //var midX = x - scale * this.anchorX;
-    //var midY = y - scale * this.anchorY;
-    var midX = x;
-    var midY = y;
-
     ctx.save();
     
-    ctx.translate(midX, midY);
+    ctx.translate(x, y);
     ctx.rotate(degrees * Math.PI / 180);
-    ctx.translate(-midX, -midY);
+    ctx.translate(-x, -y);
     ctx.globalAlpha = 0.5;
-    ctx.drawImage(this.img, x - scale * this.anchorX, y - scale * this.anchorY, this.img.width * scale, this.img.height * scale);
-    drawCrossHair(ctx, x, y, 10, "#0f0", "x, y");
+    ctx.drawImage(this.img, x - this.scaleWidth * this.anchorX, y - this.scaleHeight * this.anchorY, this.img.width * this.scaleWidth, this.img.height * this.scaleHeight);
+    drawCrossHair(ctx, x, y, 10, "#00f", "anchor");
     //this.drawCrossHair(midX, midY, "#00f");
 
     ctx.restore();

@@ -287,8 +287,18 @@
     var myCanvas = document.getElementById("myCanvas");
     var ctx = myCanvas.getContext("2d");
     var character = new Character("clyde", "ClydeFull.svg");
-    character.torso.anchorX = 236;
-    character.torso.anchorY = 150;
+
+    const clydeBodyCenterX = 236;
+    const clydeBodyCenterY = 150;
+    const clydeThighCenterX = 223;
+    const clydeThighCenterY = 275;
+    const clydeEyeCenterX = 380;
+    const clydeEyeCenterY = 150;
+    //character.torso.anchorX = clydeThighCenterX;
+    //character.torso.anchorY = clydeThighCenterY;
+
+    character.torso.anchorX = clydeEyeCenterX;
+    character.torso.anchorY = clydeEyeCenterY;
     gravity = 0;
     setInterval(updateCharacter, 10);
   </script>
