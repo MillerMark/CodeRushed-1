@@ -13,7 +13,7 @@ function mouseOut(e) {
 function addSvgButton(buttonName, clickFunction) {
   var button = document.getElementById(buttonName);
   if (clickFunction)
-    button.addEventListener("click", clickFunction);
+    button.addEventListener("click", clickFunction, false);
 
   var topPolygon = getForeground(button);
   if (topPolygon) {

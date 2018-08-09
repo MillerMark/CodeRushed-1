@@ -5,6 +5,7 @@
   <script type="text/javascript" src="../Source/Physics.js"></script>
   <script type="text/javascript" src="../Source/SvgButtons.js"></script>
   <script type="text/javascript" src="../Source/Character.js"></script>
+  <script type="text/javascript" src="../Source/DrawingTools.js"></script>
   <link rel="stylesheet" type="text/css" href="svgStyles.css">
 </head>
 
@@ -14,6 +15,7 @@
       border-collapse: collapse;
       border-spacing: 0;
     }
+
       .tg td {
         font-family: Arial, sans-serif;
         font-size: 14px;
@@ -81,7 +83,25 @@
         <input type="text" id="txtCharacterName" minlength="1" maxlength="255"
                placeholder="(character name)" oninput="characterNameChanged()" />
         <input type="text" id="txtCharacterScale" minlength="1" maxlength="255"
-               placeholder="(character scale)"  oninput="characterScaleChanged()" />
+               placeholder="(character scale)" oninput="characterScaleChanged()" />
+
+        <svg id="btnScaleUp" class="svgButton" viewBox="0 0 163 163">
+          <polygon points="0,141 0,0 141,0 141,141" style="fill:#FFFFFF;stroke:none;stroke-width:1" />
+          <polygon points="7.5,7.5 133.5,7.5 133.5,133.5 75.5625,133.5 75.5625,119.5 119.5,119.5 119.5,21.5625 21.5625,21.5625 21.5625,65.8125 7.5,65.8125" style="fill:#5A4967;stroke:none;stroke-width:1" />
+          <path stroke="none" stroke-width="1" fill="#AFA0BC" d="M14.125,81.125L14.125,126.9375 59.9375,126.9375 59.9375,81.125 14.125,81.125z M7.5,74.5L66.5,74.5 66.5,133.5 7.5,133.5 7.5,74.5z" />
+          <polygon points="107.625,65.3125 99.1875,56.875 78.9375,77.1875 62.125,60.375 82.375,40.125 74,31.6875 107.625,31.6875" style="fill:#4472C4;stroke:none;stroke-width:1" />
+          <polygon points="107.625,65.3125 99.1875,56.875 78.9375,77.1875 62.125,60.375 82.375,40.125 74,31.6875 107.625,31.6875" style="fill:none;stroke:#2F528F;stroke-width:1.3125" />
+          <polygon points="0,141 0,0 141,0 141,141" style="fill:#000;fill-opacity:0;stroke:#F2F2F2;stroke-width:1" />
+        </svg>
+
+        <svg id="btnScaleDown" class="svgButton" viewBox="0 0 164 163">
+          <polygon points="0,141 0,0 142,0 142,141" style="fill:#FFFFFF;stroke:none;stroke-width:1" />
+          <polygon points="7.5,7.5 133.5,7.5 133.5,133.5 75.5625,133.5 75.5625,119.5 119.5,119.5 119.5,21.5625 21.5625,21.5625 21.5625,65.8125 7.5,65.8125" style="fill:#AFA0BC;stroke:none;stroke-width:1" />
+          <path stroke="none" stroke-width="1" fill="#5A4967" d="M14.125,81.125L14.125,126.9375 59.9375,126.9375 59.9375,81.125 14.125,81.125z M7.5,74.5L66.5,74.5 66.5,133.5 7.5,133.5 7.5,74.5z" />
+          <polygon points="70.625,34.875 79,43.3125 99.3125,23 116.125,39.8125 95.8125,60.125 104.25,68.5 70.625,68.5" style="fill:#4472C4;stroke:none;stroke-width:1" />
+          <polygon points="70.625,34.875 79,43.3125 99.3125,23 116.125,39.8125 95.8125,60.125 104.25,68.5 70.625,68.5" style="fill:none;stroke:#2F528F;stroke-width:1.3125" />
+          <polygon points="0,141 0,0 142,0 142,141" style="fill:#000;fill-opacity:0;stroke:#F2F2F2;stroke-width:1" />
+        </svg>
       </th>
       <th class="tg-97fk"></th>
     </tr>
@@ -220,7 +240,7 @@
 
     function createNewCharacter(e) {
       var charName = "(unnamed)";
-      var torsoFileName = window.prompt("Torso File Name:", "ClydeTorsoBack.svg");
+      var torsoFileName = window.prompt("Torso File Name:", "ClydeFull.svg");
       if (torsoFileName == null || torsoFileName == "")
         return;
 
@@ -241,14 +261,51 @@
       refresh();
     }
 
+    function updateCharacter() {
+      refresh();
+    }
+
+    function scaleCharacterUp(e) {
+      e.preventDefault();
+      character.scale *= 1.1;
+      refresh();
+    }
+
+    function scaleCharacterDown(e) {
+      e.preventDefault();
+      if (character.scale < 0)
+        character.scale = 1;
+      character.scale = character.scale * 0.9;
+      refresh();
+    }
+
     var frameIndexTextBox = document.getElementById("frameNumber");
 
+    // addSvgButton("btnNewCharacter", createNewCharacter);
+    // addSvgButton("btnNewLimb", createNewLimb);
+    // addSvgButton("btnNewLayer", createNewLayer);
+    // addSvgButton("btnBackFrame");
+    // addSvgButton("btnForwardFrame");
+    // addSvgButton("btnScaleUp", scaleCharacterUp);
+    // addSvgButton("btnScaleDown", scaleCharacterDown);
 
-    
     var myCanvas = document.getElementById("myCanvas");
     var ctx = myCanvas.getContext("2d");
-    var character = new Character("clyde", "ClydeTorsoBack.svg");
+    var character = new Character("clyde", "ClydeFull.svg");
+
+    const clydeBodyCenterX = 236;
+    const clydeBodyCenterY = 150;
+    const clydeThighCenterX = 223;
+    const clydeThighCenterY = 275;
+    const clydeEyeCenterX = 380;
+    const clydeEyeCenterY = 150;
+    //character.torso.anchorX = clydeThighCenterX;
+    //character.torso.anchorY = clydeThighCenterY;
+
+    character.torso.anchorX = clydeEyeCenterX;
+    character.torso.anchorY = clydeEyeCenterY;
     gravity = 0;
+    setInterval(updateCharacter, 10);
   </script>
 </body>
 </html>
