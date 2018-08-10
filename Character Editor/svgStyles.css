@@ -1,55 +1,57 @@
-.svgButtonImage {
-    width: auto;
-    height: auto;
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --svg-btn-hover-bg: #fcf5c4;
+    --svg-btn-hover-shadow: #666;
 }
 
 .svgButton {
     width: 128px;
     height: 128px;
-    fill: transparent;
-    background-color: transparent;
-    color: transparent;
-    border: none;
-    outline: none;
-}
-
-.svgButton:hover {
-    fill: #fcf5c4;
-}
-
-.svgNavButtonImage {
-    width: auto;
-    height: auto;
 }
 
 .svgNavButton {
     width: 96px;
     height: 96px;
+}
+
+.svgButton, .svgNavButton {
     fill: transparent;
-    background-color:transparent;
-    color:transparent;
-    border:none;
-    outline:none;
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    outline: none;
+    transition: background-color 1.0s, border 0.2s;
 }
 
-.svgNavButton:hover {
-    fill: #fcf5c4;
+.svgButton > img, .svgNavButton > img {
+    width: 100%;
+    height: 100%;
 }
 
-.svgButtonBack {
-	fill: #fff;
+.svgButton:hover, .svgNavButton:hover {
+    background-color: var(--svg-btn-hover-bg);
+    /*border: outset;*/
+    border-radius: 10px;
 }
 
-	.svgButtonBack:hover {
-		fill: #fcf5c4;
-	}
+.svgButton:active, .svgNavButton:active {
+    box-shadow: 0 5px var(--svg-btn-hover-shadow);
+    transform: translateY(4px);
+}
 
-	.svgButtonBack path:hover {
-		border: 10px solid green;
-	}
+.repeatButton:active {
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+    animation-duration: 0.2s;
 
-/* There is no svgButtonColors class! */
-.svgButtonColors {
-	background: #fcf5c4;
-	border: #f00;
+    animation-name: repeat;
+    animation-play-state: running;
+}
+
+@keyframes repeat {
+    from { outline: none; } /* some bogus change */
+    to { outline: none; }   /* IE doesn't work when empty */
 }
