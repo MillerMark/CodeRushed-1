@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../CSS/Common.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/svgStyles.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/CharacterEditorFlow.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="createSection">
+            <button id="btnNewCharacter" class="svgButton" onclick="createNewCharacter()">
+                <img src="../SVGs/Buttons/NewCharacter.svg" />
+            </button>
+
+            <button id="btnNewLimb" class="svgButton" onclick="createNewLimb()">
+                <img src="../SVGs/Buttons/NewLimb.svg" />
+            </button>
+
+            <button id="btnNewLayer" class="svgButton" onclick="createNewLayer()">
+                <img src="../SVGs/Buttons/NewLayer.svg" />
+            </button>
+        </div>
+        <div class="scalingSection">
+            <input type="text" id="txtCharacterName" minlength="1" maxlength="255"
+                   placeholder="(character name)" oninput="characterNameChanged()" />
+
+            <button id="btnScaleUp" class="svgNavButton repeatButton" onclick="scaleCharacterUp()">
+                <img src="../SVGs/Buttons/ScaleUp.svg" />
+            </button>
+
+            <input type="text" id="txtCharacterScale" minlength="1" maxlength="255"
+                   placeholder="(character scale)" oninput="characterScaleChanged()" />
+
+            <button id="btnScaleDown" class="svgNavButton repeatButton" onclick="scaleCharacterDown()">
+                <img src="../SVGs/Buttons/ScaleDown.svg" />
+            </button>
+        </div>
+        <div class="loadingSection">
+            Folder: <input type="text" value="Clyde" id="folderName"><br><br>
+            Base File Name: <input value="WalkFrame" type="text" id="baseFileName"><br><br>
+            Count: <input type="text" value="25" id="frameCount"><br><br>
+            <button type="button" onclick="Load()">Load!</button>
+        </div>
+        <div class="canvasSection">
+            <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"
+                    onmousemove="canvasMouseMove(event)" onmousedown="canvasMouseDown(event)"></canvas>
+        </div>
+        <div class="anchorSection">
+            <button id="btnAnchorDrop" class="svgButton" onclick="dropAnchor()">
+                <img src="../SVGs/Buttons/AnchorDrop.svg" />
+            </button>
+        </div>
+        <div class="navSection">
+            <button id="btnBackFrame" class="svgNavButton repeatButton" onclick="advanceFrameBackward()">
+                <img src="../SVGs/Buttons/BackFrame.svg" />
+            </button>
+            <input class="textInput" type="text" value="0" id="frameNumber" onchange="frameNumberTextChanged">
+            <button id="btnForwardFrame" class="svgNavButton repeatButton" onclick="advanceFrameForward()">
+                <img src="../SVGs/Buttons/ForwardFrame.svg" />
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <script type="text/javascript" src="../Source/Actor.js"></script>
+        <script type="text/javascript" src="../Source/Physics.js"></script>
+        <script type="text/javascript" src="../Source/Character.js"></script>
+        <script type="text/javascript" src="../Source/DrawingTools.js"></script>
+        <script type="text/javascript" src="../Source/characterEditModes.js"></script>
+        <script type="text/javascript" src="../Source/CharacterEditor.js"></script>
+    </footer>
+</body>
+</html>
