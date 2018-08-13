@@ -1,63 +1,66 @@
 /* anything that has a class attribute ending with "Section" */
 [class $= "Section"] {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    padding: 10px 5px;
-    border-style: solid;
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    border-color: #cbcefb;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #cbcefb;
 }
 
-[class $= "Section"] > * {
-    margin: 0px 5px;
-}
+	[class $= "Section"] > * {
+		margin: 0px 5px;
+	}
 
 .createSection {
-    grid-area: _createArea;
+	grid-area: _createArea;
 }
 
 .scalingSection {
-    grid-area: scalingArea;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	grid-area: scalingArea;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .loadingSection {
-    grid-area: loadingArea;
+	display: none;
+	grid-area: loadingArea;
 }
 
 .canvasSection {
-    grid-area: _canvasArea;
+	grid-area: _canvasArea;
 }
 
 .anchorSection {
-    grid-area: _anchorArea;
+	grid-area: _anchorArea;
 }
 
 .navSection {
-    grid-area: ____navArea;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	grid-area: ____navArea;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .container {
-    display: grid;
-    grid-template-areas:
-        /* Prefixed names with '_'s so they line up here */
-        /* Makes it easier to see the layout             */
+	display: grid;
+	grid-template-areas:
+	/* Prefixed names with '_'s so they line up here */
+	/* Makes it easier to see the layout             */
+	'characterArea partsArea layersArea';
+	/*'_anchorArea ____navArea';
         '_createArea scalingArea'
         'loadingArea _canvasArea'
-        '_anchorArea ____navArea';
-    border: solid;
-    border-width: 1px;
-    border-color: #cbcefb;
-    height: 100%;
+        '_anchorArea ____navArea';*/
+	border: solid;
+	border-width: 1px;
+	border-color: #cbcefb;
+	height: 100%;
 }
 
 /*
@@ -66,13 +69,13 @@
 
 */
 @media (max-width: 920px) {
-    .container {
-        grid-template-areas:
-            '_createArea'
-            'loadingArea'
-            'scalingArea'
-            '_canvasArea'
-            '____navArea'
-            '_anchorArea';
-    }
+	.container {
+		grid-template-areas: '_createArea' 'loadingArea' 'scalingArea' '_canvasArea' '____navArea' '_anchorArea';
+	}
+}
+
+
+/* ----------------- */
+.createSection {
+	grid-area: characterArea;
 }

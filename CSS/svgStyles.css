@@ -29,7 +29,7 @@
 }
 
 .svgButton:active, .svgNavButton:active {
-    box-shadow: 0 5px var(--svg-btn-hover-shadow);
+    box-shadow: 5px 5px var(--svg-btn-hover-shadow);
     transform: translateY(4px);
 }
 
