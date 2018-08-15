@@ -10,31 +10,20 @@
 <body>
   <div class="container">
     <div class="characterSection">
+
       <div class="characterAnimationListColumn">
-        <select id="lstKnownCharacters" size="8"></select>
-      </div>
-      <div class="createButtons">
-        <button id="btnNewCharacter" class="svgButton" onclick="createNewCharacter()">
-          <img src="../SVGs/Buttons/NewCharacter.svg" />
-        </button>
+        <select class="knownCharactersList" id="lstKnownCharacters" size="8"></select>
 
-        <button id="btnNewLimb" class="svgButton" onclick="createNewLimb()">
-          <img src="../SVGs/Buttons/NewLimb.svg" />
-        </button>
-
-        <button id="btnNewLayer" class="svgButton" onclick="createNewLayer()">
-          <img src="../SVGs/Buttons/NewLayer.svg" />
-        </button>
+        <select class="knownAnimationsList" id="lstKnownAnimations" size="8"></select>
       </div>
+
       <div class="characterAnimationEditor">
-
-
-        <div class="canvasSection">
+        <div class="mainCharacterEditor">
           <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"
                   onmousemove="canvasMouseMove(event)" onmousedown="canvasMouseDown(event)"></canvas>
         </div>
 
-        <div class="navSection">
+        <div class="frameNavigation">
           <button id="btnBackFrame" class="svgNavButton repeatButton" onclick="advanceFrameBackward()">
             <img src="../SVGs/Buttons/BackFrame.svg" />
           </button>
@@ -51,6 +40,37 @@
           <button type="button" onclick="Load()">Load!</button>
         </div>
 
+        <div class="createButtons">
+          <button id="btnNewCharacter" class="svgButton" onclick="createNewCharacter()">
+            <img src="../SVGs/Buttons/NewCharacter.svg" />
+          </button>
+
+          <button id="btnNewLimb" class="svgButton" onclick="createNewLimb()">
+            <img src="../SVGs/Buttons/NewLimb.svg" />
+          </button>
+
+          <button id="btnNewLayer" class="svgButton" onclick="createNewLayer()">
+            <img src="../SVGs/Buttons/NewLayer.svg" />
+          </button>
+        </div>
+
+        <div class="scalingSection">
+          scalingSection
+          <input type="text" id="txtCharacterName" minlength="1" maxlength="255"
+                 placeholder="(character name)" oninput="characterNameChanged()" />
+
+          <button id="btnScaleUp" class="svgNavButton repeatButton" onclick="scaleCharacterUp()">
+            <img src="../SVGs/Buttons/ScaleUp.svg" />
+          </button>
+
+          <input type="text" id="txtCharacterScale" minlength="1" maxlength="255"
+                 placeholder="(character scale)" oninput="characterScaleChanged()" />
+
+          <button id="btnScaleDown" class="svgNavButton repeatButton" onclick="scaleCharacterDown()">
+            <img src="../SVGs/Buttons/ScaleDown.svg" />
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -60,23 +80,6 @@
 
     <div class="layersSection">
       layersSection
-    </div>
-
-    <div class="scalingSection">
-      scalingSection
-      <input type="text" id="txtCharacterName" minlength="1" maxlength="255"
-             placeholder="(character name)" oninput="characterNameChanged()" />
-
-      <button id="btnScaleUp" class="svgNavButton repeatButton" onclick="scaleCharacterUp()">
-        <img src="../SVGs/Buttons/ScaleUp.svg" />
-      </button>
-
-      <input type="text" id="txtCharacterScale" minlength="1" maxlength="255"
-             placeholder="(character scale)" oninput="characterScaleChanged()" />
-
-      <button id="btnScaleDown" class="svgNavButton repeatButton" onclick="scaleCharacterDown()">
-        <img src="../SVGs/Buttons/ScaleDown.svg" />
-      </button>
     </div>
 
     <div class="anchorSection">
@@ -94,6 +97,7 @@
     <script type="text/javascript" src="../Source/DesignSession.js"></script>
     <script type="text/javascript" src="../Source/DrawingTools.js"></script>
     <script type="text/javascript" src="../Source/characterEditModes.js"></script>
+    <script type="text/javascript" src="../Source/LocalStorage.js"></script>
 
 
     <!--Must be last...--> 

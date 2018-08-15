@@ -1,4 +1,5 @@
 /* anything that has a class attribute ending with "Section" */
+
 [class $= "Section"] {
 	font-family: Arial, sans-serif;
 	font-size: 14px;
@@ -22,13 +23,39 @@
 	align-items: center;
 }
 
+.layersSection {
+	grid-area: layersArea;
+}
+
+.partsSection {
+	grid-area: partsArea;
+}
+
+.frameNavigation {
+	grid-area: frameNavigationArea;
+}
+
 .loadingSection {
-	display: none;
+	/*display: none;*/
 	grid-area: loadingArea;
 }
 
 .canvasSection {
 	grid-area: _canvasArea;
+}
+
+.scalingSection {
+	grid-area: scalingSectionArea;
+}
+
+.characterAnimationEditor {
+	display: grid;
+	grid-area: characterAnimationEditorArea;
+	grid-template-areas: 'createButtonsArea' 'mainCharacterEditorArea' 'frameNavigationArea' 'loadingArea' 'scalingSectionArea';
+}
+
+.mainCharacterEditor {
+	grid-area: mainCharacterEditorArea;
 }
 
 .anchorSection {
@@ -47,25 +74,29 @@
 	grid-area: createButtonsArea;
 }
 
+#lstKnownCharacters {
+	grid-area: lstKnownCharactersArea;
+}
+
+#lstKnownAnimations {
+	grid-area: lstKnownAnimationsArea;
+}
+
 .characterAnimationListColumn {
+	display: grid;
 	grid-area: characterAnimationListColumnArea;
+	grid-template-areas: 'lstKnownCharactersArea' 'lstKnownAnimationsArea';
 }
 
 .characterSection {
 	display: grid;
-	grid-template-areas: 'characterAnimationListColumnArea' 'createButtonsArea';
+	grid-area: characterArea;
+	grid-template-areas: 'characterAnimationListColumnArea characterAnimationEditorArea';
 }
 
 .container {
 	display: grid;
-	grid-template-areas:
-	/* Prefixed names with '_'s so they line up here  */
-	/* Makes it easier to see the layout             */
-	'characterArea partsArea layersArea';
-	/*'_anchorArea ____navArea';
-        '_createArea scalingArea'
-        'loadingArea _canvasArea'
-        '_anchorArea ____navArea';*/
+	grid-template-areas: 'characterArea partsArea layersArea';
 	border: solid;
 	border-width: 1px;
 	border-color: #cbcefb;

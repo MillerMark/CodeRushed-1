@@ -128,6 +128,7 @@ function createNewLayer(e) {
 
 function characterNameChanged(e) {
   designSession.activeCharacter.name = document.getElementById('txtCharacterName').value;
+  storage.save();
 }
 
 function characterScaleChanged(e) {
@@ -226,7 +227,10 @@ var designSession = new DesignSession();
 var myCanvas = document.getElementById("myCanvas");
 var ctx = myCanvas.getContext("2d");
 
-designSession.activeCharacter = new Character("clyde", "ClydeFull.svg");
+var storage = new LocalStorage();
+
+// TODO: remove this line of code...
+designSession.createAndActivateNewCharacter("clyde", "ClydeFull.svg");
 designSession.activeCharacter.torso.spinning = true;
 
 const clydeBodyCenterX = 236;
