@@ -14,10 +14,6 @@
 		margin: 0px 5px;
 	}
 
-.createSection {
-	grid-area: _createArea;
-}
-
 .scalingSection {
 	grid-area: scalingArea;
 	display: -webkit-flex;
@@ -47,10 +43,23 @@
 	align-items: center;
 }
 
+.createButtons {
+	grid-area: createButtonsArea;
+}
+
+.characterAnimationListColumn {
+	grid-area: characterAnimationListColumnArea;
+}
+
+.characterSection {
+	display: grid;
+	grid-template-areas: 'characterAnimationListColumnArea' 'createButtonsArea';
+}
+
 .container {
 	display: grid;
 	grid-template-areas:
-	/* Prefixed names with '_'s so they line up here */
+	/* Prefixed names with '_'s so they line up here  */
 	/* Makes it easier to see the layout             */
 	'characterArea partsArea layersArea';
 	/*'_anchorArea ____navArea';

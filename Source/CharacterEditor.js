@@ -152,8 +152,7 @@ function scaleCharacterDown() {
   designSession.activeCharacter.scale = designSession.activeCharacter.scale * 0.9;
   refresh();
 }
-
-
+ 
 function getMousePosInCanvas(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
@@ -165,7 +164,6 @@ function getMousePosInCanvas(canvas, evt) {
 function canvasMouseMove(e) {
   if (!cursor)
     return;
-
   var pos = getMousePosInCanvas(myCanvas, e);
   if (cursor) {
     cursor.x = pos.x;
