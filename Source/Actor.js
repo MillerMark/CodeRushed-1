@@ -1,9 +1,10 @@
 const svgPath = "../SVGs/";
 
 class Actor {
-  constructor(x, y, svgFile, killActorFunction) {
+  constructor(x, y, svgFile, killActorFunction, obj) {
     this.killActorFunc = killActorFunction;
     this.img = new Image();
+    this.svgFile = svgFile;
     this.img.src = svgPath + svgFile;
     this.anchorX = 0;
     this.anchorY = 0;
@@ -20,6 +21,13 @@ class Actor {
     this.spinning = false;
     this.scaleWidth = 1;
     this.scaleHeight = 1;
+    this.loadFromDto(obj);
+  }
+
+  loadFromDto(obj) {
+    // Special properties of a Class type with functions handled here.
+    for (var prop in obj)
+      this[prop] = obj[prop];
   }
 
 

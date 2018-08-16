@@ -30,7 +30,8 @@ function refresh() {
   ctx.clearRect(0, 0, myCanvas.width, myCanvas.clientHeight);
   if (backgroundFrameImage)
     ctx.drawImage(backgroundFrameImage, 0, 0, backgroundFrameImage.width * scale, backgroundFrameImage.height * scale);
-  designSession.activeCharacter.draw(ctx);
+  if (designSession.activeCharacter)
+    designSession.activeCharacter.draw(ctx);
   drawCursor();
 }
 
@@ -256,6 +257,7 @@ var myCanvas = document.getElementById("myCanvas");
 var ctx = myCanvas.getContext("2d");
 
 var storage = new LocalStorage();
+storage.load();
 
 // TODO: remove this line of code...
 designSession.createAndActivateNewCharacter("clyde", "ClydeFull.svg");
@@ -272,5 +274,6 @@ const clydeEyeCenterY = 150;
 
 designSession.activeCharacter.torso.anchorX = clydeEyeCenterX;
 designSession.activeCharacter.torso.anchorY = clydeEyeCenterY;
+
 gravity = 0;
 setInterval(updateCharacter, 10);
