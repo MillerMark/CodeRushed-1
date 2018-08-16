@@ -51,7 +51,7 @@
 .characterAnimationEditor {
 	display: grid;
 	grid-area: characterAnimationEditorArea;
-	grid-template-areas: 'createButtonsArea' 'mainCharacterEditorArea' 'frameNavigationArea' 'loadingArea' 'scalingSectionArea';
+	grid-template-areas: 'mainCharacterEditorArea' 'frameNavigationArea' 'loadingArea' 'scalingSectionArea';
 }
 
 .mainCharacterEditor {
@@ -70,28 +70,34 @@
 	align-items: center;
 }
 
-.createButtons {
-	grid-area: createButtonsArea;
+.characterSection {
+	display: -webkit-flex;
+	display: flex;
 }
 
-#lstKnownCharacters {
-	grid-area: lstKnownCharactersArea;
+.characterButtonsRow {
+	display: flex;
+	flex-direction: row;
 }
 
-#lstKnownAnimations {
-	grid-area: lstKnownAnimationsArea;
+.animationButtonsRow {
+	display: flex;
+	flex-direction: row;
+}
+
+.animationSection {
+	display: flex;
+	flex-direction: column;
+}
+
+.characterListSection {
+	display: flex;
+	flex-direction: column;
 }
 
 .characterAnimationListColumn {
-	display: grid;
-	grid-area: characterAnimationListColumnArea;
-	grid-template-areas: 'lstKnownCharactersArea' 'lstKnownAnimationsArea';
-}
-
-.characterSection {
-	display: grid;
-	grid-area: characterArea;
-	grid-template-areas: 'characterAnimationListColumnArea characterAnimationEditorArea';
+	display: flex;
+	flex-direction: column;
 }
 
 .container {

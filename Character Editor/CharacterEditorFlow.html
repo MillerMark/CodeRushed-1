@@ -10,14 +10,35 @@
 <body>
   <div class="container">
     <div class="characterSection">
-
       <div class="characterAnimationListColumn">
-        <select class="knownCharactersList" id="lstKnownCharacters" size="8"></select>
+        <div class="characterListSection">
+          <div class="characterButtonsRow">
+            <button id="btnNewCharacter" class="svgButton" onclick="createNewCharacter()">
+              <img src="../SVGs/Buttons/NewCharacter.svg" />
+            </button>
+            <button id="btnDeleteCharacter" class="svgButton" onclick="deleteSelectedCharacter()">
+              <img src="../SVGs/Buttons/DeleteCharacter.svg" />
+            </button>
+          </div>
 
-        <select class="knownAnimationsList" id="lstKnownAnimations" size="8"></select>
+          <select id="lstKnownCharacters" size="8"></select>
+        </div>
+
+        <div class="animationSection">
+          <div class="animationButtonsRow">
+            <button id="btnNewAnimation" class="svgButton" onclick="createNewAnimation()">
+              <img src="../SVGs/Buttons/NewAnimation.svg" />
+            </button>
+            <button id="btnDeleteCharacter" class="svgButton" onclick="deleteSelectedAnimation()">
+              <img src="../SVGs/Buttons/DeleteAnimation.svg" />
+            </button>
+          </div>
+          <select id="lstKnownAnimations" size="8"></select>
+        </div>
       </div>
 
       <div class="characterAnimationEditor">
+
         <div class="mainCharacterEditor">
           <canvas id="myCanvas" width="600" height="480" style="border:1px solid #C0C0C0;"
                   onmousemove="canvasMouseMove(event)" onmousedown="canvasMouseDown(event)"></canvas>
@@ -41,10 +62,6 @@
         </div>
 
         <div class="createButtons">
-          <button id="btnNewCharacter" class="svgButton" onclick="createNewCharacter()">
-            <img src="../SVGs/Buttons/NewCharacter.svg" />
-          </button>
-
           <button id="btnNewLimb" class="svgButton" onclick="createNewLimb()">
             <img src="../SVGs/Buttons/NewLimb.svg" />
           </button>
@@ -75,7 +92,19 @@
     </div>
 
     <div class="partsSection">
-      partsSection
+      <div class="partsListColumn">
+          <div class="partsButtonsRow">
+            <button id="btnNewPart" class="svgButton" onclick="createNewPart()">
+              <img src="../SVGs/Buttons/NewPart.svg" />
+            </button>
+            <button id="btnDeletePart" class="svgButton" onclick="deleteSelectedPart()">
+              <img src="../SVGs/Buttons/DeletePart.svg" />
+
+            </button>
+          </div>
+
+          <select id="lstAllParts" size="8"></select>
+      </div>
     </div>
 
     <div class="layersSection">
@@ -100,7 +129,7 @@
     <script type="text/javascript" src="../Source/LocalStorage.js"></script>
 
 
-    <!--Must be last...--> 
+    <!-- Must be last... --> 
     <script type="text/javascript" src="../Source/CharacterEditor.js"></script>
   </footer>
 </body>

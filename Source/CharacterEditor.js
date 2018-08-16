@@ -108,7 +108,33 @@ function addCharacterToListBox(character) {
   characterListBox.options.add(opt);
 }
 
-function createNewCharacter(e) {
+
+function deleteSelectedAnimation() {
+  console.log('deleteSelectedAnimation');
+  // TODO: Implement this!
+}
+
+function deleteSelectedCharacter() {
+  console.log('deleteSelectedCharacter');
+	// TODO: Implement this!
+}
+
+function deleteSelectedPart() {
+  console.log('deleteSelectedPart');
+	// TODO: Implement this!
+}
+
+function createNewPart() {
+  console.log('createNewPart()');
+  // TODO: Implement this!
+}
+
+function createNewAnimation() {
+  console.log('createNewAnimation()');
+  // TODO: Implement this!
+}
+
+function createNewCharacter() {
   var charName = "(unnamed)";
   var torsoFileName = window.prompt("Torso File Name:", "ClydeFull.svg");
   if (torsoFileName === null || torsoFileName === "")
@@ -131,15 +157,11 @@ function characterNameChanged(e) {
   storage.save();
 }
 
-function characterScaleChanged(e) {
-  designSession.activeCharacter.scale = document.getElementById('txtCharacterScale').value;
-  refresh();
-}
-
 function updateCharacter() {
   refresh();
 }
 
+//++ Scaling...
 function scaleCharacterUp() {
   //e.preventDefault();
   designSession.activeCharacter.scale *= 1.1;
@@ -153,7 +175,13 @@ function scaleCharacterDown() {
   designSession.activeCharacter.scale = designSession.activeCharacter.scale * 0.9;
   refresh();
 }
- 
+
+function characterScaleChanged(e) {
+  designSession.activeCharacter.scale = document.getElementById('txtCharacterScale').value;
+  refresh();
+}
+
+//++ Mouse Event Handlers...
 function getMousePosInCanvas(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {

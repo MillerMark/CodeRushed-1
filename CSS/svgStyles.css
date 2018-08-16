@@ -1,6 +1,6 @@
 .svgButton {
-    width: 128px;
-    height: 128px;
+    width: 84px;
+    height: 84px;
 }
 
 .svgNavButton {
@@ -29,8 +29,8 @@
 }
 
 .svgButton:active, .svgNavButton:active {
-    box-shadow: 5px 5px var(--svg-btn-hover-shadow);
-    transform: translateY(4px);
+    box-shadow: 2px 2px var(--svg-btn-hover-shadow);
+    transform: translateY(3px);
 }
 
 .repeatButton:active {
