@@ -30,7 +30,6 @@ class Actor {
       this[prop] = obj[prop];
   }
 
-
   calculateNewPosition() {
     if (this.stopped)
       return;

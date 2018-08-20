@@ -17,7 +17,7 @@
 
   load() {
     var sessionData = window.localStorage.getItem('designSession');
-    var designSession = new DesignSession(JSON.parse(sessionData));
+    designSession = new DesignSession(JSON.parse(sessionData));
     designSession.loaded();
     refresh();
   }

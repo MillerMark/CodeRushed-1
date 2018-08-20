@@ -260,8 +260,8 @@ var storage = new LocalStorage();
 storage.load();
 
 // TODO: remove this line of code...
-designSession.createAndActivateNewCharacter("clyde", "ClydeFull.svg");
-designSession.activeCharacter.torso.spinning = true;
+//designSession.createAndActivateNewCharacter("clyde", "ClydeFull.svg");
+//designSession.activeCharacter.torso.spinning = true;
 
 const clydeBodyCenterX = 236;
 const clydeBodyCenterY = 150;
@@ -272,8 +272,8 @@ const clydeEyeCenterY = 150;
 //character.torso.anchorX = clydeThighCenterX;
 //character.torso.anchorY = clydeThighCenterY;
 
-designSession.activeCharacter.torso.anchorX = clydeEyeCenterX;
-designSession.activeCharacter.torso.anchorY = clydeEyeCenterY;
+//designSession.activeCharacter.torso.anchorX = clydeEyeCenterX;
+//designSession.activeCharacter.torso.anchorY = clydeEyeCenterY;
 
 gravity = 0;
 setInterval(updateCharacter, 10);

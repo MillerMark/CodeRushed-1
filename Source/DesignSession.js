@@ -9,6 +9,7 @@
   loadFromDto(obj) {
     for (var prop in obj)
       // Special properties of a Class type with functions handled here.
+      // TODO: This second expression check ("|| prop == 'activeCharacter'") feels wrong. Double check it!
       if (prop == 'characters' || prop == 'activeCharacter')
         this.loadCharacters(obj[prop]);
       else
@@ -18,7 +19,7 @@
   loadCharacters(characters) {
     for (var i = 0; i < characters.length; i++) {
       var plainCharacter = characters[i];
-      this.characters.push(new Character(plainCharacter.name, plainCharacter.torsoFileName, plainCharacter));
+      this.characters.push(new Character(plainCharacter.name, plainCharacter.torso.svgFile, plainCharacter));
     }
   }
 
@@ -29,7 +30,17 @@
 
   loaded() {
     this.characters.forEach(this.loadCharacter);
-    this.activeCharacter = this.characters[this.activeCharacterIndex];
+    if (!this.activeCharacterIndex)
+      this.activeCharacterIndex = 0;
+    if (this.characters.length > 0) {
+      this.activeCharacter = this.characters[this.activeCharacterIndex];
+      this.populateUserInterfaceBasedOnActiveCharacter();
+    }
+  }
+
+  populateUserInterfaceBasedOnActiveCharacter() {
+    var charNameTextBox = document.getElementById("txtCharacterName");
+    charNameTextBox.value = this.activeCharacter.name;
   }
 
   loadCharacter(character) {
