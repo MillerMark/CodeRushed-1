@@ -20,7 +20,11 @@ class Character {
   }
 
   loaded() {
-    console.log('loading character: ' + this.name);
+    console.log('just loaded character: ' + this.name);
+  }
+
+  saving() {
+    console.log('saving character: ' + this.name);
   }
 
   draw(ctx) {
