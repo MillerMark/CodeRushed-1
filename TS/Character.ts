@@ -1,5 +1,11 @@
 class Character {
-  constructor(name, torsoFileName, obj) {
+  scale: number;
+  name: string;
+  torso: Actor;
+  y: number;
+  x: number;
+
+  constructor(name: string, torsoFileName: string, obj?: any) {
     this.x = 300;
     this.y = 240;
     this.torso = new Actor(this.x, this.y, torsoFileName);

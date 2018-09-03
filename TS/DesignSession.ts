@@ -1,5 +1,9 @@
 ﻿class DesignSession {
-	constructor(obj) {
+  activeCharacterIndex: any;
+  activeCharacter: any;
+  characters: any[];
+
+	constructor(obj?: any) {
     this.characters = [];
     this.activeCharacter = null;
     this.activeCharacterIndex = null;
@@ -39,7 +43,7 @@
   }
 
   populateUserInterfaceBasedOnActiveCharacter() {
-    var charNameTextBox = document.getElementById("txtCharacterName");
+    var charNameTextBox = <HTMLInputElement>document.getElementById("txtCharacterName");
     charNameTextBox.value = this.activeCharacter.name;
   }
 
@@ -53,6 +57,6 @@
 
   createAndActivateNewCharacter(charName, torsoFileName) {
     this.activeCharacter = new Character(charName, torsoFileName);
-    this.characters.push(designSession.activeCharacter);
+    this.characters.push(this.activeCharacter);
   }
 }
