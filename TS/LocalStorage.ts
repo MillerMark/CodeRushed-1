@@ -10,15 +10,15 @@
       return value;
   }
 
-  save() {
+  save(designSession: DesignSession) {
     var sessionData = JSON.stringify(designSession, this.replacer);
     window.localStorage.setItem('designSession', sessionData);
   }
 
-  load() {
+  load(): DesignSession {
     var sessionData = window.localStorage.getItem('designSession');
-    designSession = new DesignSession(JSON.parse(sessionData));
+    var designSession = new DesignSession(JSON.parse(sessionData));
     designSession.loaded();
-    refresh();
+    return designSession;
   }
 }

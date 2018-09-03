@@ -47,7 +47,7 @@
           <button id="btnBackFrame" class="svgNavButton repeatButton" onclick="advanceFrameBackward()">
             <img src="../SVGs/Buttons/BackFrame.svg" />
           </button>
-          <input class="textInput" type="text" value="0" id="frameNumber" onchange="frameNumberTextChanged">
+          <input class="textInput" type="text" value="0" id="frameNumber" onchange="frameNumberTextChanged()">
           <button id="btnForwardFrame" class="svgNavButton repeatButton" onclick="advanceFrameForward()">
             <img src="../SVGs/Buttons/ForwardFrame.svg" />
           </button>
@@ -119,20 +119,99 @@
   </div>
 
   <footer>
-    <!--<script type="text/javascript" src="../Source/Actor.js"></script>
+    <script type="text/javascript" src="../Source/Actor.js"></script>
     <script type="text/javascript" src="../Source/Physics.js"></script>
     <script type="text/javascript" src="../Source/Character.js"></script>
     <script type="text/javascript" src="../Source/DesignSession.js"></script>
     <script type="text/javascript" src="../Source/DrawingTools.js"></script>
     <script type="text/javascript" src="../Source/characterEditModes.js"></script>
-    <script type="text/javascript" src="../Source/LocalStorage.js"></script>-->
+    <script type="text/javascript" src="../Source/LocalStorage.js"></script>
 
 
     <!-- Must be last... -->
-    <!--<script type="text/javascript" src="../Source/CharacterEditor.js"></script>-->
+    <script type="text/javascript" src="../Source/CharacterEditor.js"></script>
 
-    var characterEditor = new CharacterEditor();
-    characterEditor.main();
+    <script>
+      function createNewCharacter() {
+        characterEditor.createNewCharacter();
+      }
+
+      function deleteSelectedCharacter() {
+        characterEditor.deleteSelectedCharacter();
+      }
+
+      function createNewAnimation() {
+        characterEditor.createNewAnimation();
+      }
+
+      function deleteSelectedAnimation() {
+        characterEditor.deleteSelectedAnimation();
+      }
+
+      function canvasMouseDown(event) {
+        characterEditor.canvasMouseDown(event);
+      }
+
+      function canvasMouseMove(event) {
+        characterEditor.canvasMouseMove(event);
+      }
+
+      function advanceFrameBackward() {
+        characterEditor.advanceFrameBackward();
+      }
+
+      function frameNumberTextChanged() {
+        characterEditor.frameNumberTextChanged();
+      }
+
+      function advanceFrameForward() {
+        characterEditor.advanceFrameForward();
+      }
+
+      function createNewLimb() {
+        characterEditor.createNewLimb();
+      }
+
+      function createNewLayer() {
+        characterEditor.createNewLayer();
+      }
+
+      function characterNameChanged() {
+        characterEditor.characterNameChanged();
+      }
+
+      function scaleCharacterUp() {
+        characterEditor.scaleCharacterUp();
+      }
+      
+      function characterScaleChanged() {
+        characterEditor.characterScaleChanged();
+      }
+
+      function scaleCharacterDown() {
+        characterEditor.scaleCharacterDown();
+      }
+
+      function createNewPart() {
+        characterEditor.createNewPart();
+      }
+
+      function deleteSelectedPart() {
+        characterEditor.deleteSelectedPart();
+      }
+
+      function dropAnchor() {
+        characterEditor.dropAnchor();
+      }
+
+      function updateCharacter() {
+        characterEditor.refresh();
+      }
+
+      var characterEditor = new CharacterEditor();
+      characterEditor.main();
+      setInterval(updateCharacter, 10);
+    </script>
   </footer>
 </body>
 </html>

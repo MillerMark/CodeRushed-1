@@ -11,6 +11,6 @@
 		"outDir": "./Source"
 	},
 	"include": [
-		"./Source/**/*.ts"
+		"./TS/**/*.ts"
 	]
 }

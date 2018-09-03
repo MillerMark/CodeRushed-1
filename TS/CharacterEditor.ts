@@ -1,4 +1,6 @@
 class CharacterEditor {
+  frameIndexTextBox: HTMLElement;
+  storage: LocalStorage;
   cursor: Actor;
   ctx: any;
   myCanvas: HTMLCanvasElement;
@@ -9,91 +11,92 @@ class CharacterEditor {
   frameIndex: number;
   folderName: string;
   baseFileName: string;
-  frameCount: string;
+  frameCount: number;
 
   constructor() {
     this.scale = 0.75;
     this.characterEditMode = characterEditModes.normal;
+    this.storage = new LocalStorage();
   }
   
 
   loadBackgroundImageFromFiles() {
     this.folderName = <string>(<HTMLInputElement>document.getElementById("folderName")).value;
     this.baseFileName = <string>(<HTMLInputElement>document.getElementById("baseFileName")).value;
-    this.frameCount = <string>(<HTMLInputElement>document.getElementById("frameCount")).value;
+    this.frameCount = +<string>(<HTMLInputElement>document.getElementById("frameCount")).value;
 
     this.backgroundFrameImage = new Image();
     var self = this;
     this.backgroundFrameImage.onload = () => {
-      this.myCanvas.width = this.backgroundFrameImage.width * this.scale;
-      this.myCanvas.height = this.backgroundFrameImage.height * this.scale;
-      this.refresh();
+      self.myCanvas.width = self.backgroundFrameImage.width * self.scale;
+      self.myCanvas.height = self.backgroundFrameImage.height * self.scale;
+      self.refresh();
     };
     this.frameIndex = 0;
     this.loadImage();
   }
 
   loadImage() {
-    if (backgroundFrameImage)
-      backgroundFrameImage.src = folderName + '/' + baseFileName + frameIndex + '.png';
+    if (this.backgroundFrameImage)
+      this.backgroundFrameImage.src = this.folderName + '/' + this.baseFileName + this.frameIndex + '.png';
   }
 
   refresh() {
-    ctx.clearRect(0, 0, myCanvas.width, myCanvas.clientHeight);
-    if (backgroundFrameImage)
-      ctx.drawImage(backgroundFrameImage, 0, 0, backgroundFrameImage.width * scale, backgroundFrameImage.height * scale);
-    if (designSession.activeCharacter)
-      designSession.activeCharacter.draw(ctx);
-    drawCursor();
+    this.ctx.clearRect(0, 0, this.myCanvas.width, this.myCanvas.clientHeight);
+    if (this.backgroundFrameImage)
+      this.ctx.drawImage(this.backgroundFrameImage, 0, 0, this.backgroundFrameImage.width * this.scale, this.backgroundFrameImage.height * this.scale);
+    if (this.designSession.activeCharacter)
+      this.designSession.activeCharacter.draw(this.ctx);
+    this.drawCursor();
   }
 
   drawCursor() {
-    if (cursor)
-      cursor.draw(ctx);
+    if (this.cursor)
+      this.cursor.draw(this.ctx);
   }
 
   frameNumberTextChanged() {
-    setFrameIndex(frameIndexTextBox.value);
+    this.setFrameIndex((<HTMLInputElement>this.frameIndexTextBox).value);
   }
 
   setFrameIndex(newIndex) {
-    if (frameIndex === newIndex) {
+    if (this.frameIndex === newIndex) {
       return;
     }
-    frameIndex = newIndex;
-    frameIndexChanged();
+    this.frameIndex = newIndex;
+    this.frameIndexChanged();
   }
 
   frameIndexChanged() {
-    loadImage();
-    updateFrameNumber();
-    refresh();
+    this.loadImage();
+    this.updateFrameNumber();
+    this.refresh();
   }
 
   advanceFrameForward() {
-    if (!frameCount || !backgroundFrameImage)
+    if (!this.frameCount || !this.backgroundFrameImage)
       return;
-    if (!frameIndex || isNaN(frameIndex))
-      frameIndex = 0;
-    frameIndex++;
-    if (frameIndex >= frameCount)
-      frameIndex = 0;
-    frameIndexChanged();
+    if (!this.frameIndex || isNaN(this.frameIndex))
+      this.frameIndex = 0;
+    this.frameIndex++;
+    if (this.frameIndex >= this.frameCount)
+      this.frameIndex = 0;
+    this.frameIndexChanged();
   }
 
   advanceFrameBackward() {
-    if (!frameCount || !backgroundFrameImage)
+    if (!this.frameCount || !this.backgroundFrameImage)
       return;
-    if (!frameIndex || isNaN(frameIndex))
-      frameIndex = 0;
-    frameIndex--;
-    if (frameIndex < 0)
-      frameIndex = frameCount - 1;
-    frameIndexChanged();
+    if (!this.frameIndex || isNaN(this.frameIndex))
+      this.frameIndex = 0;
+    this.frameIndex--;
+    if (this.frameIndex < 0)
+      this.frameIndex = this.frameCount - 1;
+    this.frameIndexChanged();
   }
 
   updateFrameNumber() {
-    frameIndexTextBox.value = frameIndex;
+    (<HTMLInputElement>this.frameIndexTextBox).value = this.frameIndex.toString();
   }
 
   getBackground(button) {
@@ -167,11 +170,7 @@ class CharacterEditor {
 
   characterNameChanged(e) {
     this.designSession.activeCharacter.name = document.getElementById('txtCharacterName').value;
-    this.storage.save();
-  }
-
-  updateCharacter() {
-    this.refresh();
+    this.storage.save(this.designSession);
   }
 
   //++ Scaling...
@@ -253,8 +252,8 @@ class CharacterEditor {
   }
 
   main() {
-    var cursor = null;
-    var frameIndexTextBox = document.getElementById("frameNumber");
+    this.cursor = null;
+    this.frameIndexTextBox = document.getElementById("frameNumber");
 
     // addSvgButton("btnNewCharacter", createNewCharacter);
     // addSvgButton("btnNewLimb", createNewLimb);
@@ -269,8 +268,9 @@ class CharacterEditor {
     this.myCanvas = <HTMLCanvasElement>document.getElementById("myCanvas");
     this.ctx = this.myCanvas.getContext("2d");
 
-    var storage = new LocalStorage();
-    storage.load();
+    this.storage = new LocalStorage();
+    this.designSession = this.storage.load();
+    this.refresh();
 
     // TODO: remove this line of code...
     //designSession.createAndActivateNewCharacter("clyde", "ClydeFull.svg");
@@ -289,6 +289,7 @@ class CharacterEditor {
     //designSession.activeCharacter.torso.anchorY = clydeEyeCenterY;
 
     gravity = 0;
-    setInterval(this.updateCharacter, 10);
   }
 }
+
+
